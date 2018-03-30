@@ -42,11 +42,11 @@ if __name__ == "__main__":
 ```
 Outputs:
 > Vehicle init
-Vehicle delete
-Vehicle init
-Vehicle init
-Vehicle enter
-Vehicle exit
-Vehicle delete
-Vehicle delete
+> Vehicle delete
+> Vehicle init
+> Vehicle init
+> Vehicle enter
+> Vehicle exit
+> Vehicle delete
+> Vehicle delete
 
