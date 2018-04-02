@@ -1,0 +1,122 @@
+# SubTree
+
+## Recursion
+```c
+typedef struct TreeNode {
+    int mValue;
+    TreeNode* mLeft;
+    TreeNode* mRight;
+} TreeNode;
+
+extern bool HasSubTreeCore(TreeNode* pTreeNode1, TreeNode* pTreeNode2);
+
+bool DoseTree1HaveAllNodesOfTree2(TreeNode* pTreeNode1, TreeNode* pTreeNode2) {
+    if (pTreeNode2 == NULL) {
+        return true;
+    }
+
+    if (pTreeNode1 == NULL) {
+        return false;
+    }
+
+    if (pTreeNode1->mValue != pTreeNode2->mValue) {
+        return false;
+    }
+
+    return DoseTree1HaveAllNodesOfTree2(pTreeNode1->mLeft, pTreeNode2->mLeft) &&
+            DoseTree1HaveAllNodesOfTree2(pTreeNode1->mRight, pTreeNode2->mRight);
+}
+
+bool HasSubTree(TreeNode* pTreeHead1, TreeNode* pTreeHead2) {
+    if ((pTreeHead1 == NULL && pTreeHead2 != NULL) ||
+        (pTreeHead1 != NULL && pTreeHead2 == NULL)) {
+        return false;
+    }
+
+    if (pTreeHead1 == NULL && pTreeHead2 == NULL) {
+        return true;
+    }
+
+    return HasSubTreeCore(pTreeHead1, pTreeHead2);
+
+}
+
+bool HasSubTreeCore(TreeNode* pTreeNode1, TreeNode* pTreeNode2) {
+    bool result = false;
+
+    if (pTreeNode1->mValue == pTreeNode2->mValue) {
+        result = DoseTree1HaveAllNodesOfTree2(pTreeNode1, pTreeNode2);
+    }
+
+    if (!result && pTreeNode1->mLeft != NULL) {
+        result = HasSubTreeCore(pTreeNode1->mLeft, pTreeNode2);
+    }
+
+    if (!result && pTreeNode1->mRight != NULL) {
+        result = HasSubTreeCore(pTreeNode1->mRight, pTreeNode2);
+    }
+
+    return result;
+}
+
+
+int main() {
+    /* Build Tree 1 */
+    TreeNode* root1 = new TreeNode();
+    root1->mValue = 1;
+
+    TreeNode* tn11 = new TreeNode();
+    tn11->mValue = 8;
+
+    TreeNode* tn12 = new TreeNode();
+    tn12->mValue = 7;
+
+    TreeNode* tn13 = new TreeNode();
+    tn13->mValue = 9;
+
+    TreeNode* tn14 = new TreeNode();
+    tn14->mValue = 2;
+
+    TreeNode* tn15 = new TreeNode();
+    tn15->mValue = 4;
+
+    TreeNode* tn16 = new TreeNode();
+    tn16->mValue = 7;
+
+    root1->mLeft = tn11;
+    root1->mRight = tn12;
+    tn11->mLeft = tn13;
+    tn11->mRight = tn14;
+    tn14->mLeft = tn15;
+    tn14->mRight = tn16;
+
+    /* Build Tree 2 */
+    TreeNode* root2 = new TreeNode();
+    root2->mValue = 8;
+    TreeNode* tn21 = new TreeNode();
+    tn21->mValue = 9;
+    TreeNode* tn22 = new TreeNode();
+    tn22->mValue = 2;
+
+    /* Abnormal Node */
+    TreeNode* tn23 = new TreeNode();
+    tn23->mValue = 3;
+
+    root2->mLeft = tn21;
+    root2->mRight = tn22;
+
+    /* Abnormal SubTreeNode */
+    tn22->mRight = tn23;
+
+    bool res = false;
+    res = HasSubTree(root1, root2);
+    printf("%s", res ? "True" : "False");
+
+    return 0;
+}
+```
+## Iteration
+
+e.....
+
+> Refs: http://zhedahht.blog.163.com/blog/static/25411174201011445550396/
