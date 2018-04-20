@@ -96,7 +96,6 @@ $0：当前执行的进程名
 ##### lsof
 ```shell
 list opened file by system
-
 就是列出系统打开的所有文件
 
 -i (internet) 加入适当的参数可以列出网络相关的文件打开情况。一般可以用来查看端口
@@ -104,6 +103,7 @@ list opened file by system
 ##### dmidecode
 ```shell
 dmidecode
+输出各种机器信息， 要什么就用grep吧。
 ```
 
 > Refs: http://linux.vbird.org/linux_basic/0330regularex.php#sed
