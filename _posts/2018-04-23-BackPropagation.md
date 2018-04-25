@@ -5,12 +5,10 @@
 ![Forward Propagation](https://raw.githubusercontent.com/phoenixtomax/phoenixtomax.github.io/master/Res/BP2.jpg)
 
 #### Forward Feature Matrix Multiplication
-![Forward Feature Matrix Multiplication]
-(https://raw.githubusercontent.com/phoenixtomax/phoenixtomax.github.io/master/Res/BP1.jpg)
+![Forward Feature Matrix Multiplication](https://raw.githubusercontent.com/phoenixtomax/phoenixtomax.github.io/master/Res/BP1.jpg)
 
 #### Single Neurons
-![Single Neurons]
-(https://raw.githubusercontent.com/phoenixtomax/phoenixtomax.github.io/master/Res/BP3.jpg)
+![Single Neurons](https://raw.githubusercontent.com/phoenixtomax/phoenixtomax.github.io/master/Res/BP3.jpg)
 
 ## 2. 手撸反向传播
 
