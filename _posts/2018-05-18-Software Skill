@@ -5,12 +5,20 @@ The following are my favorite softwares and some skills about them.
 
 ### Intellij
 
+Plugin:
+IdeaVim
+Nodejs
+
 License Server:
 ```
 http://jetbrains.wolfogre.com
 ```
 
 ### Clion
+
+Plugin:
+IdeaVim
+Makefile Support
 
 License Server:
 ```
