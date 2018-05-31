@@ -23,3 +23,8 @@ ldconfig -v 2>/dev/null | grep -v ^$'\t'
 ```
 Show linked library search path. 
 Please check /etc/ld.so.conf.d/.
+
+### Grub
+```
+Refs: https://blog.csdn.net/zhu_liangwei/article/details/7847034
+```
