@@ -16,3 +16,10 @@ It will download all files and subfolders in ddd directory:
 ```
 Refs: https://stackoverflow.com/questions/23446635/how-to-download-http-directory-with-all-files-and-sub-directories-as-they-appear
 ```
+
+### ldconfig
+```
+ldconfig -v 2>/dev/null | grep -v ^$'\t'
+```
+Show linked library search path. 
+Please check /etc/ld.so.conf.d/.
