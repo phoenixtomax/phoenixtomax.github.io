@@ -5,6 +5,13 @@
 https://github.com/BVLC/caffe/tree/opencl
 https://github.com/01org/caffe (Intel maintains)
 ```
+### Dependency
+1. lmdb-mdb
+2. gflags
+3. glog
+4. leveldb
+5. snappy
+6. Altas (Hard to compile) /OpenBLAS
 
 #### ViennaCL
 ```
