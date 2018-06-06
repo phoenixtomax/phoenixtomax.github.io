@@ -12,6 +12,10 @@ https://github.com/01org/caffe (Intel maintains)
 4. leveldb
 5. snappy
 6. Altas (Hard to compile) /OpenBLAS
+7. ViennaCL
+8. libDNN
+9. OpenCL-ICD-Loader
+10. OpenCL & OpenCL Driver
 
 #### ViennaCL
 ```
@@ -22,6 +26,13 @@ https://github.com/viennacl/viennacl-dev
 ```
 https://github.com/naibaf7/libdnn
 ```
+
+#### OpenCL-ICD-Loader
+It's a proxy to switch between different implementations of OpenCL in the device.
+The config file is located in /etc/OpenCl/vendors/XXXXX.icd
+
+#### OpenCL & Driver
+Depends on your vendor.
 
 ## cuCaffe
 
