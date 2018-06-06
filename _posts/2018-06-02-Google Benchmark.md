@@ -4,7 +4,6 @@
 1. 
 ```c++
 #include <benchmark/benchmark.h>
-
 static void BM_uint2str(benchmark::State& state) {
     unsigned int num = 1234;
     while (state.KeepRunning())
