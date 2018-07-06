@@ -30,13 +30,13 @@ Refs: https://blog.csdn.net/zhu_liangwei/article/details/7847034
 ```
 ### cat /proc/PID/status
 
-VmPeak:     表示进程所占用最大虚拟内存大小
-VmSize:      表示进程当前虚拟内存大小
-VmLck:       表示被锁定的内存大小
-VmHWM:    表示进程所占用物理内存的峰值
-VmRSS:     表示进程当前占用物理内存的大小(与procrank中的RSS)
-VmData:     表示进程数据段的大小
-VmStk:       表示进程堆栈段的大小
-VmExe:      表示进程代码的大小
-VmLib:       表示进程所使用共享库的大小
-VmPTE:      表示进程页表项的大小
+* VmPeak:表示进程所占用最大虚拟内存大小
+* VmSize:表示进程当前虚拟内存大小
+* VmLck:表示被锁定的内存大小
+* VmHWM:表示进程所占用物理内存的峰值
+* VmRSS:表示进程当前占用物理内存的大小(与procrank中的RSS)
+* VmData:表示进程数据段的大小
+* VmStk:表示进程堆栈段的大小
+* VmExe:表示进程代码的大小
+* VmLib:表示进程所使用共享库的大小
+* VmPTE:表示进程页表项的大小
