@@ -9,6 +9,7 @@
    2) .prototxt:                Layer descriptions
       deploy.prototxt is similiar to train_val.prototxt.
       BUT They are different.
+      
       I.  deploy.prototxt:       raw model
       
       Data Layer
