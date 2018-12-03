@@ -23,3 +23,5 @@
 总而言之，就是梯度的计算到最后就是像一个将预测误差反向传播的过程。
 
 > Refs: https://blog.csdn.net/zhongkejingwang/article/details/44514073
+
+> https://zhuanlan.zhihu.com/p/36910496
