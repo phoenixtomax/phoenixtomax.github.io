@@ -1,10 +1,17 @@
+---
+layout: default 
+title:  "Python Learning"
+author: Skipper
+date:   2018-03-31 00:00:00 +0200
+image: http://www.scrollpublishing.com/store/media/Thomas-Payne.jpg
+---
 # Python Learning
 
 > The modification of this post is still ongoing.
 
 ## Class
 
-### init, open, new, del and exit
+#### init, open, new, del and exit
 ```python
 class Vehicle:
     def __init__(self):
@@ -52,7 +59,7 @@ Outputs:
 
 ## Iteration
 
-### enumeration
+#### enumeration
 ```python
 my_list = ['apple', 'banana', 'grapes', 'pear']
 >>> for c, value in enumerate(my_list, 2): print(c, value)
@@ -71,7 +78,7 @@ my_list = ['apple', 'banana', 'grapes', 'pear']
 
 Enumerate elements with specified index *2*, *-1*.
 
-### Generator
+#### Generator
 ```python
 def fib(max):
     n, a, b = 0, 0, 1
@@ -86,7 +93,7 @@ def fib(max):
 <generator object fib at 0x104feaaa0>
 ```
 
-### Yield
+#### Yield
 ```python
 def odd():
     print('step 1')
@@ -113,7 +120,7 @@ Traceback (most recent call last):
 StopIteration
 ```
 
-## Filter
+### Filter
 ```python
 def is_palindrome(n):
     n=str(n)

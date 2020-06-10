@@ -3,7 +3,7 @@ layout: default
 title:  "LRU in Python"
 author: Skipper
 date:   2018-03-30 00:00:00 +0200
-position: left
+image: http://www.scrollpublishing.com/store/media/Thomas-Payne.jpg
 ---
 # LRU in Python
 
