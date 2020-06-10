@@ -1,0 +1,37 @@
+<h1 id="google-benchmark">Google Benchmark</h1>
+
+<h3 id="basic-steps">Basic Steps</h3>
+<ol>
+  <li>```c++
+#include &lt;benchmark/benchmark.h&gt;
+static void BM_uint2str(benchmark::State&amp; state) {
+unsigned int num = 1234;
+while (state.KeepRunning())
+    (void) uint2str(num);
+}
+// Register the function as a benchmark
+BENCHMARK(BM_uint2str);</li>
+</ol>
+
+<p>BENCHMARK_MAIN();</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2. 
+```c++
+static void BM_vuint2vstr(benchmark::State&amp; state) {
+    vector&lt;unsigned int&gt; vuint;
+    for (std::size_t i = 0; i &lt; state.range_x(); ++i) {
+        vuint.push_back(i);
+    }
+    
+    vector&lt;string&gt; vstr;
+    while (state.KeepRunning())
+        vuint2vstr(vuint, vstr);
+}
+// Register the function as a benchmark
+BENCHMARK(BM_vuint2vstr)-&gt;Range(8, 8 &lt;&lt; 10);
+
+BENCHMARK_MAIN();
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Refs:
+http://airekans.github.io/cpp/2015/04/18/google-benchmark
+</code></pre></div></div>
