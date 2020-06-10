@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>Python Unit Test · The Interesting Times of Skipper</title>
+
+
+<meta name="description" content="Python Unit Test##Basic Unit TestTest Class  1 class Widget:  2     name_ = "Default"  3     size_ = set([0, 0])  4  5     def __init__(self, name):  6      ...">
+
+<link rel="icon" href="http://localhost:4000/assets/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:4000/assets/touch-icon.png">
+<link rel="stylesheet" href="http://localhost:4000/assets/common.css">
+
+	<link rel="stylesheet" href="http://localhost:4000/assets/newspaper.css">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<link rel="canonical" href="http://localhost:4000/columns/2018-04-03-Unit-Test-in-Python.html">
+<link rel="alternate" type="application/atom+xml" title="The Interesting Times of Skipper" href="http://localhost:4000/feed.xml" />
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Mansalva&display=swap" rel="stylesheet">
+
+
+
+
+
+	</head>
+
+	<body>
+
+		<div class="head">
+  
+  <div id="masthead">
+    <h3><a href="http://localhost:4000">The Interesting Times of Skipper</a></h3>
+  </div>
+
+  
+</div>
+
+
+		<div class="content">
+			<h1 id="python-unit-test">Python Unit Test</h1>
+
+<p>##Basic Unit Test</p>
+
+<p>Test Class</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="mi">1</span> <span class="k">class</span> <span class="nc">Widget</span><span class="p">:</span>
+  <span class="mi">2</span>     <span class="n">name_</span> <span class="o">=</span> <span class="s">"Default"</span>
+  <span class="mi">3</span>     <span class="n">size_</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+  <span class="mi">4</span>
+  <span class="mi">5</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+  <span class="mi">6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">name_</span> <span class="o">=</span> <span class="n">name</span>
+  <span class="mi">7</span>
+  <span class="mi">8</span>     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="mi">9</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_</span>
+ <span class="mi">10</span>
+ <span class="mi">11</span>     <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+ <span class="mi">12</span>         <span class="bp">self</span><span class="o">.</span><span class="n">size_</span> <span class="o">=</span> <span class="p">([</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">])</span>
+ <span class="mi">13</span>
+ <span class="mi">14</span>     <span class="k">def</span> <span class="nf">dispose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">15</span>         <span class="bp">self</span><span class="o">.</span><span class="n">name_</span> <span class="o">=</span> <span class="s">"Default"</span>
+ <span class="mi">16</span>         <span class="bp">self</span><span class="o">.</span><span class="n">size_</span> <span class="o">=</span> <span class="bp">None</span>
+</code></pre></div></div>
+<p>Test Case</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="mi">1</span> <span class="kn">import</span> <span class="nn">unittest</span>
+  <span class="mi">2</span>
+  <span class="mi">3</span>
+  <span class="mi">4</span> <span class="k">class</span> <span class="nc">MyTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+  <span class="mi">5</span>
+  <span class="mi">6</span>     <span class="k">def</span> <span class="nf">test_upper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="mi">7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s">'foo'</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s">'FOO'</span><span class="p">)</span>
+  <span class="mi">8</span>
+  <span class="mi">9</span>     <span class="k">def</span> <span class="nf">test_isupper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">10</span>         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s">'FOO'</span><span class="o">.</span><span class="n">isupper</span><span class="p">())</span>
+ <span class="mi">11</span>         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="s">'Foo'</span><span class="o">.</span><span class="n">isupper</span><span class="p">())</span>
+ <span class="mi">12</span>
+ <span class="mi">13</span>     <span class="k">def</span> <span class="nf">test_split</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">14</span>         <span class="n">s</span> <span class="o">=</span> <span class="s">'hello world'</span>
+ <span class="mi">15</span>         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="p">[</span><span class="s">'hello'</span><span class="p">,</span> <span class="s">'world'</span><span class="p">])</span>
+ <span class="mi">16</span>
+ <span class="mi">17</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="nb">TypeError</span><span class="p">):</span> <span class="c1"># Exception
+</span> <span class="mi">18</span>             <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                     <span class="c1"># It should be exception here
+</span> <span class="mi">19</span>
+ <span class="mi">20</span> <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+ <span class="mi">21</span>     <span class="c1"># unittest.main()
+</span> <span class="mi">22</span>
+ <span class="mi">23</span>     <span class="n">suite</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">MyTestCase</span><span class="p">)</span>
+ <span class="mi">24</span>     <span class="n">unittest</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">suite</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="advanced-unit-test">Advanced Unit Test</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="mi">1</span> <span class="kn">import</span> <span class="nn">unittest</span>
+  <span class="mi">2</span> <span class="kn">import</span> <span class="nn">sys</span>
+  <span class="mi">3</span> <span class="kn">import</span> <span class="nn">Widget</span>
+  <span class="mi">4</span>
+  <span class="mi">5</span> <span class="k">class</span> <span class="nc">WidgetTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+  <span class="mi">6</span>     <span class="o">@</span><span class="nb">classmethod</span>
+  <span class="mi">7</span>     <span class="k">def</span> <span class="nf">setUpClass</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+  <span class="mi">8</span>         <span class="k">pass</span>
+  <span class="mi">9</span>
+ <span class="mi">10</span>     <span class="o">@</span><span class="nb">classmethod</span>
+ <span class="mi">11</span>     <span class="k">def</span> <span class="nf">tearDownClass</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+ <span class="mi">12</span>         <span class="k">pass</span>
+ <span class="mi">13</span>
+ <span class="mi">14</span>     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">15</span>         <span class="bp">self</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">Widget</span><span class="o">.</span><span class="n">Widget</span><span class="p">(</span><span class="s">"The widget"</span><span class="p">)</span>
+ <span class="mi">16</span>
+ <span class="mi">17</span>     <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">18</span>         <span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">dispose</span><span class="p">()</span>
+ <span class="mi">19</span>         <span class="bp">self</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="bp">None</span>
+ <span class="mi">20</span>
+ <span class="mi">21</span>     <span class="k">def</span> <span class="nf">test_default_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">22</span>         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">]),</span>
+ <span class="mi">23</span>                          <span class="s">'incorrect default size'</span><span class="p">)</span>
+ <span class="mi">24</span>
+ <span class="mi">25</span>     <span class="k">def</span> <span class="nf">test_resize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">26</span>         <span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+ <span class="mi">27</span>         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">]),</span>
+ <span class="mi">28</span>                          <span class="s">'wrong size after resize'</span><span class="p">)</span>
+ <span class="mi">29</span>
+ <span class="mi">30</span>     <span class="o">@</span><span class="n">unittest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s">"demostrating skipping"</span><span class="p">)</span>
+ <span class="mi">31</span>     <span class="k">def</span> <span class="nf">test_nothing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">32</span>         <span class="k">pass</span>
+ <span class="mi">33</span>
+ <span class="mi">34</span>     <span class="o">@</span><span class="n">unittest</span><span class="o">.</span><span class="n">skipUnless</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"win"</span><span class="p">),</span> <span class="s">"requires Windows"</span><span class="p">)</span>
+ <span class="mi">35</span>     <span class="k">def</span> <span class="nf">test_windows_support</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">36</span>         <span class="c1"># windows specific testing code
+</span> <span class="mi">37</span>         <span class="k">pass</span>
+ <span class="mi">38</span>
+ <span class="mi">39</span>     <span class="o">@</span><span class="n">unittest</span><span class="o">.</span><span class="n">expectedFailure</span>
+ <span class="mi">40</span>     <span class="k">def</span> <span class="nf">test_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ <span class="mi">41</span>         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"broken"</span><span class="p">)</span>
+ <span class="mi">42</span>
+ <span class="mi">43</span> <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+ <span class="mi">44</span>
+ <span class="mi">45</span>     <span class="s">""" No.1 Method """</span>
+ <span class="mi">46</span>     <span class="s">"""
+ 47     widgetTestSuite = unittest.TestSuite()
+ 48     defaultSizeTestCase = WidgetTestCase('test_default_size')
+ 49     resizeTestCase = WidgetTestCase('test_resize')
+ 50
+ 51     widgetTestSuite.addTest(defaultSizeTestCase)
+ 52     widgetTestSuite.addTest(resizeTestCase)
+ 53     """</span>
+ <span class="mi">54</span>
+ <span class="mi">55</span>     <span class="s">""" No.2 Method """</span>
+ <span class="mi">56</span>     <span class="n">widgetTestSuite</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">WidgetTestCase</span><span class="p">)</span>
+ <span class="mi">57</span>
+ <span class="mi">58</span>     <span class="n">unittest</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">widgetTestSuite</span><span class="p">)</span>
+ <span class="mi">59</span>     <span class="c1"># unittest.main()
+</span></code></pre></div></div>
+
+		</div>
+
+	</body>
+
+	
+		<footer>
+		  <footer class="footer">
+  <div class="footer-left col-md-4 col-sm-6">
+    <p class="about">
+      <span> Legalese</span> The information and opinions within this website are for information purposes only. They are not intended to constitute legal or other professional advice, and should not be relied on or treated as a substitute for specific advice relevant to particular circumstances. We accept no responsibility for any errors, omissions or misleading statements on this website, or for any loss which may arise from reliance on materials contained on this website. Certain parts of this site may link to external Internet sites, and other external Internet sites may link to this website. We are not responsible for the content of any external Internet sites.
+    </p>
+    <div class="icons">
+      <a href="https://twitter.com/twitter"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/linkedin"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/phoenixtomax"><i class="fa fa-github"></i></a>
+      <a href="https://facebook.com/facebook"><i class="fa fa-facebook"></i></a>
+    </div>
+  </div>
+  <div class="footer-center col-md-4 col-sm-6">
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span> Fake Street, 123</span> Springfield, OH</p>
+    </div>
+    <div>
+      <i class="fa fa-phone"></i>
+      <p> (+1) 1234 555 321</p>
+    </div>
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="#">hello@interestingtimes.com</a></p>
+    </div>
+  </div>
+  <div class="footer-right col-md-4 col-sm-6">
+    <h2> The Interesting<span> Media</span></h2>
+    <p class="menu">
+      <a href="/"> Home</a>
+    </p>
+    <p class="name"> The Interesting Media Company &copy; 2020</p>
+  </div>
+</footer>
+
+		</footer>
+	
+	<p class="love">Made with <i class="fa fa-heart"></i> by <a href="https://alvaroduran.com">Álvaro</a></p>
+
+</html>
