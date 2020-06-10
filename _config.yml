@@ -24,7 +24,7 @@ github_username:  phoenixtomax
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: jekyll-theme-clean-blog
 plugins:
   - jekyll-feed
 

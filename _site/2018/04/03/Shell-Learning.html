@@ -1,0 +1,108 @@
+<h1 id="shell-learning">Shell Learning</h1>
+
+<p>Before I mostly read vbird to learn Shell of Linux. It’s good for chinese to learn shell.
+Shell commands is too many. So the collection of them continues in this post.</p>
+
+<h5 id="grep">grep</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. ps <span class="nt">-ef</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">'a|b'</span>
+2. ps <span class="nt">-ef</span> | <span class="nb">grep</span> <span class="s1">'a\|b'</span>
+3. ps <span class="nt">-ef</span> | egrep <span class="s1">'a|b'</span>
+</code></pre></div></div>
+
+<h5 id="xargs">xargs</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo </span>file | xargs <span class="nt">-i</span> <span class="nb">cp</span> <span class="o">{}</span> &lt;path&gt;  用<span class="o">{}</span>代替管道的输入
+<span class="nb">echo </span>file | xargs <span class="nt">-I</span> <span class="o">{}</span> <span class="nb">cp</span> <span class="o">{}</span> &lt;path&gt; 定义<span class="o">{}</span>符号，用来代替管道的输入。  
+</code></pre></div></div>
+<h5 id="cp">cp</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--parents</span> 连同目录结构一起复制
+</code></pre></div></div>
+
+<h5 id="sed">sed</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-i</span> s/old/new/g <span class="sb">`</span><span class="nb">grep</span> <span class="nt">-r</span> old <span class="k">*</span><span class="sb">`</span>
+替换所有包含old文件中的old 为 new
+</code></pre></div></div>
+<h5 id="if">if</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> …<span class="p">;</span> <span class="k">then</span>
+…
+<span class="k">elif</span> …<span class="p">;</span> <span class="k">then</span>
+…
+<span class="k">else</span>
+…
+<span class="k">fi</span>
+
+<span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> <span class="o">]</span> 判断<span class="nv">$file</span>是否是一个文件
+<span class="o">[</span> <span class="nv">$a</span> <span class="nt">-lt</span> 3 <span class="o">]</span> 判断<span class="nv">$a</span>的值是否小于3，同样-gt和-le分别表示大于或小于等于
+<span class="o">[</span> <span class="nt">-x</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> <span class="o">]</span> 判断<span class="nv">$file</span>是否存在且有可执行权限，同样-r测试文件可读性
+<span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$a</span><span class="s2">"</span> <span class="o">]</span> 判断变量<span class="nv">$a</span>是否有值，测试空串用-z
+<span class="o">[</span> <span class="s2">"</span><span class="nv">$a</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"</span><span class="nv">$b</span><span class="s2">"</span> <span class="o">]</span> 判断<span class="nv">$a</span>和<span class="nv">$b</span>的取值是否相等
+<span class="o">[</span> cond1 <span class="nt">-a</span> cond2 <span class="o">]</span> 判断cond1和cond2是否同时成立，-o表示cond1和cond2有一成立
+要注意条件测试部分中的空格。在方括号的两侧都有空格，在-f、-lt、<span class="o">=</span>等符号两侧同样也有空格。如果没有这些空格，Shell解释脚本的时候就会出错。
+</code></pre></div></div>
+<h5 id="switch">switch</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">"Your choice?"</span>
+<span class="k">select </span>var <span class="k">in</span> <span class="s2">"a"</span> <span class="s2">"b"</span> <span class="s2">"c"</span><span class="p">;</span> <span class="k">do
+</span><span class="nb">break
+</span><span class="k">done
+</span><span class="nb">echo</span> <span class="nv">$var</span>
+
+<span class="k">case</span> <span class="nv">$var</span> <span class="k">in
+</span>1<span class="p">)</span> 
+   <span class="nb">break</span><span class="p">;;</span>
+2<span class="p">)</span>
+   <span class="nb">break</span><span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+<p>Output</p>
+<blockquote>
+  <p>Your choice?
+1) a
+2) b
+3) c</p>
+</blockquote>
+
+<h5 id="shell-script-argument">Shell Script Argument</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$#表</span>示包括<span class="nv">$0</span>在内的命令行参数的个数。
+
+在Shell中，脚本名称本身是<span class="nv">$0</span>，剩下的依次是<span class="nv">$0</span>、<span class="nv">$1</span>、<span class="nv">$2</span>…、<span class="k">${</span><span class="nv">10</span><span class="k">}</span>、<span class="k">${</span><span class="nv">11</span><span class="k">}</span>，等等。
+
+<span class="nv">$*</span>表示整个参数列表，不包括<span class="nv">$0</span>，也就是说不包括文件名的参数列表。
+
+<span class="nv">$?</span>：命令执行后返回的状态
+
+<span class="nv">$$</span>：当前进程的进程号
+
+<span class="nv">$!</span>：后台运行的最后一个进程号
+
+<span class="nv">$0</span>：当前执行的进程名
+</code></pre></div></div>
+
+<h2 id="系统信息命令">系统信息命令</h2>
+<h5 id="netstat">netstat</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>用来查看网络通信情况，端口通信情况
+
+-a (all)
+
+-n (numeric) 用ip地址表示，而不用变量名，比如localhost在此参数下就会被替代成127.0.0.1
+
+-p (process id) 显示进程号
+</code></pre></div></div>
+<h5 id="lsof">lsof</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>list opened file by system
+就是列出系统打开的所有文件
+
+<span class="nt">-i</span> <span class="o">(</span>internet<span class="o">)</span> 加入适当的参数可以列出网络相关的文件打开情况。一般可以用来查看端口
+</code></pre></div></div>
+<h5 id="dmidecode">dmidecode</h5>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dmidecode
+输出各种机器信息， 要什么就用grep吧。
+</code></pre></div></div>
+
+<blockquote>
+  <p>Refs: http://linux.vbird.org/linux_basic/0330regularex.php#sed
+      http://linux.vbird.org/linux_basic/0340bashshell-scripts.php
+      http://www.ibm.com/developerworks/cn/linux/l-cn-shell-debug/index.html (Shell 脚本调试技术)
+     	http://www.cnblogs.com/forward/archive/2012/01/10/2318483.html (Ubuntu 安装包相关命令)
+     	http://coolshell.cn/articles/9104.html （sed 简明教程）
+     	http://coolshell.cn/articles/9070.html （awk 简明教程）</p>
+</blockquote>

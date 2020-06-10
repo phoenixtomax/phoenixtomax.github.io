@@ -1,0 +1,123 @@
+<h1 id="subtree">SubTree</h1>
+
+<h2 id="recursion">Recursion</h2>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">TreeNode</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">mValue</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">mLeft</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">mRight</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">TreeNode</span><span class="p">;</span>
+
+<span class="k">extern</span> <span class="n">bool</span> <span class="n">HasSubTreeCore</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeNode1</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeNode2</span><span class="p">);</span>
+
+<span class="n">bool</span> <span class="nf">DoseTree1HaveAllNodesOfTree2</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeNode1</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeNode2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pTreeNode2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">pTreeNode1</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">!=</span> <span class="n">pTreeNode2</span><span class="o">-&gt;</span><span class="n">mValue</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">DoseTree1HaveAllNodesOfTree2</span><span class="p">(</span><span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mLeft</span><span class="p">,</span> <span class="n">pTreeNode2</span><span class="o">-&gt;</span><span class="n">mLeft</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+            <span class="n">DoseTree1HaveAllNodesOfTree2</span><span class="p">(</span><span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mRight</span><span class="p">,</span> <span class="n">pTreeNode2</span><span class="o">-&gt;</span><span class="n">mRight</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">bool</span> <span class="nf">HasSubTree</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeHead1</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeHead2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">pTreeHead1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">pTreeHead2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">||</span>
+        <span class="p">(</span><span class="n">pTreeHead1</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">pTreeHead2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">pTreeHead1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">pTreeHead2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">HasSubTreeCore</span><span class="p">(</span><span class="n">pTreeHead1</span><span class="p">,</span> <span class="n">pTreeHead2</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="n">bool</span> <span class="nf">HasSubTreeCore</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeNode1</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">pTreeNode2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">bool</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">==</span> <span class="n">pTreeNode2</span><span class="o">-&gt;</span><span class="n">mValue</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">DoseTree1HaveAllNodesOfTree2</span><span class="p">(</span><span class="n">pTreeNode1</span><span class="p">,</span> <span class="n">pTreeNode2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">result</span> <span class="o">&amp;&amp;</span> <span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mLeft</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">HasSubTreeCore</span><span class="p">(</span><span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mLeft</span><span class="p">,</span> <span class="n">pTreeNode2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">result</span> <span class="o">&amp;&amp;</span> <span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mRight</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">HasSubTreeCore</span><span class="p">(</span><span class="n">pTreeNode1</span><span class="o">-&gt;</span><span class="n">mRight</span><span class="p">,</span> <span class="n">pTreeNode2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="cm">/* Build Tree 1 */</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">root1</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">root1</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn11</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn11</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn12</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn12</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn13</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn13</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn14</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn14</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn15</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn15</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn16</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn16</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+
+    <span class="n">root1</span><span class="o">-&gt;</span><span class="n">mLeft</span> <span class="o">=</span> <span class="n">tn11</span><span class="p">;</span>
+    <span class="n">root1</span><span class="o">-&gt;</span><span class="n">mRight</span> <span class="o">=</span> <span class="n">tn12</span><span class="p">;</span>
+    <span class="n">tn11</span><span class="o">-&gt;</span><span class="n">mLeft</span> <span class="o">=</span> <span class="n">tn13</span><span class="p">;</span>
+    <span class="n">tn11</span><span class="o">-&gt;</span><span class="n">mRight</span> <span class="o">=</span> <span class="n">tn14</span><span class="p">;</span>
+    <span class="n">tn14</span><span class="o">-&gt;</span><span class="n">mLeft</span> <span class="o">=</span> <span class="n">tn15</span><span class="p">;</span>
+    <span class="n">tn14</span><span class="o">-&gt;</span><span class="n">mRight</span> <span class="o">=</span> <span class="n">tn16</span><span class="p">;</span>
+
+    <span class="cm">/* Build Tree 2 */</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">root2</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">root2</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn21</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn21</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn22</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn22</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="cm">/* Abnormal Node */</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">tn23</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TreeNode</span><span class="p">();</span>
+    <span class="n">tn23</span><span class="o">-&gt;</span><span class="n">mValue</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="n">root2</span><span class="o">-&gt;</span><span class="n">mLeft</span> <span class="o">=</span> <span class="n">tn21</span><span class="p">;</span>
+    <span class="n">root2</span><span class="o">-&gt;</span><span class="n">mRight</span> <span class="o">=</span> <span class="n">tn22</span><span class="p">;</span>
+
+    <span class="cm">/* Abnormal SubTreeNode */</span>
+    <span class="n">tn22</span><span class="o">-&gt;</span><span class="n">mRight</span> <span class="o">=</span> <span class="n">tn23</span><span class="p">;</span>
+
+    <span class="n">bool</span> <span class="n">res</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">HasSubTree</span><span class="p">(</span><span class="n">root1</span><span class="p">,</span> <span class="n">root2</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">res</span> <span class="o">?</span> <span class="s">"True"</span> <span class="o">:</span> <span class="s">"False"</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="iteration">Iteration</h2>
+
+<p>e…..</p>
+
+<blockquote>
+  <p>Refs: http://zhedahht.blog.163.com/blog/static/25411174201011445550396/</p>
+</blockquote>
