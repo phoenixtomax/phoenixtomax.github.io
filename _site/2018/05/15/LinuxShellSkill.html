@@ -1,0 +1,42 @@
+<h1 id="linux-shell-skill">Linux Shell Skill</h1>
+
+<h3 id="wget">wget</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget -r -np -nH --cut-dirs=3 -R index.html http://hostname/aaa/bbb/ccc/ddd/
+</code></pre></div></div>
+<p>Explanation:</p>
+
+<p>It will download all files and subfolders in ddd directory:</p>
+<ul>
+  <li>recursively (-r),</li>
+  <li>not going to upper directories, like ccc/… (-np),</li>
+  <li>not saving files to hostname folder (-nH),</li>
+  <li>but to ddd by omitting first 3 folders aaa, bbb, ccc (–cut-dirs=3)</li>
+  <li>excluding index.html files (-R index.html)</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Refs: https://stackoverflow.com/questions/23446635/how-to-download-http-directory-with-all-files-and-sub-directories-as-they-appear
+</code></pre></div></div>
+
+<h3 id="ldconfig">ldconfig</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ldconfig -v 2&gt;/dev/null | grep -v ^$'\t'
+</code></pre></div></div>
+<p>Show linked library search path. 
+Please check /etc/ld.so.conf.d/.</p>
+
+<h3 id="grub">Grub</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Refs: https://blog.csdn.net/zhu_liangwei/article/details/7847034
+</code></pre></div></div>
+<h3 id="cat-procpidstatus">cat /proc/PID/status</h3>
+
+<ul>
+  <li>VmPeak:表示进程所占用最大虚拟内存大小</li>
+  <li>VmSize:表示进程当前虚拟内存大小</li>
+  <li>VmLck:表示被锁定的内存大小</li>
+  <li>VmHWM:表示进程所占用物理内存的峰值</li>
+  <li>VmRSS:表示进程当前占用物理内存的大小(与procrank中的RSS)</li>
+  <li>VmData:表示进程数据段的大小</li>
+  <li>VmStk:表示进程堆栈段的大小</li>
+  <li>VmExe:表示进程代码的大小</li>
+  <li>VmLib:表示进程所使用共享库的大小</li>
+  <li>VmPTE:表示进程页表项的大小</li>
+</ul>
