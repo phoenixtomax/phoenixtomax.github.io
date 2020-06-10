@@ -1,3 +1,10 @@
+---
+layout: default
+title:  "LRU in Python"
+author: Skipper
+date:   2018-03-30 00:00:00 +0200
+position: left
+---
 # LRU in Python
 
 ```python
