@@ -13,20 +13,20 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Skipper's Space
-email: phoenixtomax@gmail.com
+title: The Interesting Times
+email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Technical Material Collection
-baseurl: "" # the subpath of your site, e.g. /blog
+  May you come up with an interesting description
 baseurl: "/the-interesting-times" # the subpath of your site, e.g. /blog
-url: "http://phoenixtomax.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 google_analytics: 'UA-131540516-1' # Substitute this with your own GA key
-twitter_username: xuanweizha
-github_username:  phoenixtomax
+twitter_username: jekyllrb
+github_username:  jekyll
+excerpt_separator: <!--more-->
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-clean-blog
+theme: minima
 plugins:
   - jekyll-feed
 
@@ -41,3 +41,17 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+collections_dir: _collections
+
+collections:
+  columns:
+    output: true
+  heros:
+    output: true
+
+
+# Social media
+twitter: twitter
+github: github
+linkedin: linkedin
+facebook: facebook

@@ -1,6 +1,46 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
+layout: default
 ---
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <!-- LEFT HERO -->
+  <div class="sideHeroColumn">
+    {% for item in site.heros %}
+      {% if item.position == 'left' %}
+        {% include article.html item=item %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- HERO -->
+  <div class="heroColumn">
+    {% for item in site.heros %}
+      {% if item.position == 'center' %}
+        {% include article.html item=item %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- RIGHT HERO -->
+  <div class="sideHeroColumn">
+    {% for item in site.heros %}
+      {% if item.position == 'right' %}
+        {% include article.html item=item %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+</section>
+
+<!-- MASONRY SECTION -->
+<section class="masonry">
+  {% for item in site.columns %}
+    <div class="item">
+      {% include article.html item=item %}
+    </div>
+  {% endfor %}
+</section>
